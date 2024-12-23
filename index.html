@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="favicon2.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maria do Tempo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: cursive;
+      background-image: url("https://img.freepik.com/vetores-gratis/abstrato-gradiente-com-fundo-de-linhas-diagonais_23-2150573638.jpg?t=st=1734805122~exp=1734808722~hmac=3527209bd44f458bb71685fa582b37e607273941f0a80efdcee19e8e1d8a82bc&w=826");
+      height: 100vh;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      height: 90%;
+      display: flex;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      flex-direction: row;
+    }
+
+    .left-panel {
+      width: 40%;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .left-panel .author {
+      font-size: 16px;
+      font-family: borel;
+      font-weight: bold;
+      margin-bottom: 10px;
+      line-height: 20px;
+      margin-bottom: 30%;
+    }
+
+    .left-panel h1 {
+      font-size: 54px;
+      color: black;
+      font-family: Poppins;
+      font-weight: bolder;
+      line-height: 55px;
+    }
+
+    .search-bar {
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px 40px 10px 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .search-bar .icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .search-bar .icon:hover {
+      scale: 1.1;
+      transition: 0.4s;
+    }
+
+    .suggestions {
+      position: absolute;
+      top: 105%;
+      left: 0;
+      width: 100%;
+      background: white;
+      /*border: 1px solid #ccc;*/
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .suggestions div {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #f1f1f1;
+    }
+
+    .suggestions div:hover {
+      background: #f9f9f9;
+    }
+
+    .right-panel {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 30px;
+    }
+
+    .right-panel h2 {
+      font-size: 28px;
+      color: #ff6f61;
+    }
+
+    .previsao {
+        background: rgba(225, 123, 176, 0.7);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        max-width: 400px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); 
+        min-width: 70%;
+        min-height: 40%;   
+      }
+
+    .previsao h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 10px;
+        color: black;
+    }
+    .previsao .gif {
+        margin: 20px 0;
+    }
+    .previsao .gif img {
+        width: 100px;
+        height: auto;
+    }
+    .previsao .welcome {
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+    }
+    .previsao .carinhosa {
+        font-size: 16px;
+        margin: 30px 0;
+        color: black;
+    }
+    .previsao .divider {
+        border-bottom: 3px dashed rgba(23, 23, 23, 0.5);
+        margin: 15px 0;
+        width: 30%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .previsao .temp {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 18px;
+        color: black;
+    }
+    .previsao .temp span {
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .previsao .tecnica {
+        margin-top: 15px;
+        font-size: 14px;
+        color: black;
+    }
+
+    .weather {
+      text-align: center;
+      margin-top: 20px;
+      color: black;
+    }
+
+    .descricao {
+      color: #252525;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    .weather img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .avatar {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 30%;
+    }
+
+    .info {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #191919;
+    }
+
+    .info p {
+      margin: 5px 0;
+    }
+    /* Ajuste para telas pequenas (até 768px) */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Muda os painéis para colunas */
+      height: auto;
+    }
+
+    .left-panel, .right-panel {
+      width: 100%; /* Cada painel ocupa 100% da largura */
+      padding: 20px; /* Reduz espaçamento */
+    }
+
+    .left-panel h1 {
+      font-size: 32px; /* Texto menor para caber na tela */
+      line-height: 40px;
+    }
+
+    .search-bar input {
+      padding: 8px 10px; /* Reduz altura do input */
+    }
+
+    .search-bar .icon {
+      width: 40px; /* Reduz tamanho da lupa */
+    }
+
+    .previsao {
+      padding: 15px; /* Reduz espaçamento interno */
+      min-width: 90%; /* Ocupa maior parte da tela */
+    }
+
+    .previsao h1 {
+      font-size: 20px; /* Título menor */
+    }
+
+    .previsao .temp div {
+      font-size: 16px;
+    }
+
+    .avatar {
+      position: relative;
+      bottom: 0;
+      right: 0;
+      width: 50%; /* Ajusta tamanho do avatar */
+      margin-top: 20px;
+    }
+  }
+
+  /* Ajuste para telas muito pequenas (até 480px) */
+  @media (max-width: 480px) {
+    .container {
+      padding: 10px; /* Reduz espaçamento externo */
+    }
+
+    .previsao {
+      padding: 10px;
+      min-width: 100%; /* Ocupa toda a largura */
+    }
+
+    .previsao h1 {
+      font-size: 18px; /* Título ainda menor */
+    }
+
+    .previsao .welcome {
+      font-size: 16px; /* Texto compacto */
+    }
+
+    .previsao .temp {
+      flex-direction: column; /* Temperaturas empilhadas */
+      gap: 5px;
+    }
+
+    .avatar {
+      width: 60%; /* Avatar menor */
+    }
+
+    .left-panel h1 {
+      font-size: 28px;
+    }
+
+    .search-bar input {
+      font-size: 14px;
+    }
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <div class="author">Feito por papai <strong style="color: royalblue;">Felipi Rodrigues</strong><br/> para sua princesa <strong style="color: blueviolet;">Maria Lis!</strong></div>
+      <h1>Mariazinha <br/>do tempo</h1>
+      <div class="search-bar">
+        <input id="cityInput" type="text" placeholder="Digite o nome do local..." oninput="showSuggestions()" />
+        <img src="lupa.png" width="70px" alt="Buscar" class="icon" onclick="getWeather()">
+        <div class="suggestions" id="suggestions"></div>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="previsao">
+        <h1>Previsão do Tempo</h1>
+        
+        <div id="weatherInfo"></div>
+      </div>
+      <img src="avatar1.png" alt="Avatar da Maria" class="avatar">
+    </div>
+  </div>
+
+  <script>
+    const apiKey = '08854d15b68d2d5b0feb2727a1a61d55';
+
+    async function showSuggestions() {
+      const city = document.getElementById("cityInput").value;
+      const suggestionsDiv = document.getElementById("suggestions");
+      if (!city) {
+        suggestionsDiv.innerHTML = "";
+        return;
+      }
+
+      const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`;
+      const response = await fetch(url);
+      const data = await response.json();
+
+      suggestionsDiv.innerHTML = data.map(loc => `
+        <div onclick="selectCity('${loc.name}', '${loc.country}')">
+          ${loc.name}, ${loc.state || ""} (${loc.country})
+        </div>
+      `).join('');
+    }
+
+    function selectCity(name, state, country) {
+      document.getElementById("cityInput").value = `${name}, ${state}, ${country}`;
+      document.getElementById("suggestions").innerHTML = "";
+    }
+
+    async function getWeather() {
+      const city = document.getElementById("cityInput").value.split(",")[0];
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=pt_br&appid=${apiKey}`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Cidade não encontrada");
+        const data = await response.json();
+
+        const weatherDiv = document.getElementById("weatherInfo");
+        const previsaoDiv = document.querySelector(".previsao");
+        const tempMin = data.main.temp_min;
+        const tempMax = data.main.temp_max;
+        const description = data.weather[0].description;
+        const icon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+        const hour = new Date().getHours();
+        const welcomeMsg =
+          hour < 12
+            ? "Bom dia"
+            : hour < 18
+            ? "Boa tarde"
+            : "Boa noite";
+
+        const advice = description.includes("chuva")
+          ? "Não esqueça o guarda-chuva e o casaquinho!"
+          : "Aproveite o clima e saia para se divertir!";
+
+        // Alterar o background com base no clima
+        const weatherCondition = data.weather[0].main.toLowerCase();
+        if (weatherCondition.includes("clear")) {
+          previsaoDiv.style.backgroundImage = "url('https://img.freepik.com/fotos-gratis/primavera-vento-estratosfera-branco-puro_1127-2384.jpg?uid=R180148706&ga=GA1.1.1660975564.1734804762&semt=ais_hybrid')";
+        } else if (weatherCondition.includes("clouds")) {
+          previsaoDiv.style.backgroundImage = "url('https://img.freepik.com/fotos-premium/um-fundo-de-fumaca-rosa-e-azul-com-um-ceu-azul_888787-81.jpg?uid=R180148706&ga=GA1.1.1660975564.1734804762&semt=ais_hybrid')";
+        } else if (weatherCondition.includes("rain")) {
+          previsaoDiv.style.backgroundImage = "url('https://img.freepik.com/fotos-gratis/a-chuva-de-fundo-cai-de-perto_23-2148900870.jpg?uid=R180148706&ga=GA1.1.1660975564.1734804762&semt=ais_hybrid')";
+        } else if (weatherCondition.includes("snow")) {
+          previsaoDiv.style.backgroundImage = "url('https://img.freepik.com/fotos-gratis/fundo-de-natal-3d-com-cena-de-neve_1048-9533.jpg?uid=R180148706&ga=GA1.1.1660975564.1734804762&semt=ais_hybrid')";
+        } else {
+          previsaoDiv.style.backgroundImage = "url('https://cdn.bemcolar.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/a/papel-de-parede-infantil-arco-iris-fundo-rosa-rainbow.jpg')";
+        }
+        previsaoDiv.style.backgroundSize = "cover";
+        previsaoDiv.style.backgroundPosition = "center";
+
+        weatherDiv.innerHTML = `
+          <div class="welcome"><h3>${welcomeMsg}, boas vindas a ${city}!</div>,
+          <img src="${icon}" alt="${description}" /> 
+          <div class="descricao">Descrição: ${description}</div>
+          <div class="divider"></div>
+          <div class="temp">
+            <div>Temperatura mínima: <small>${tempMin}°C</small></div>
+            <div>Temperatura máxima: <small>${tempMax}°C</small></div>
+          </div>
+          <div class="carinhosa">${advice}</div>
+        `;
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+  </script>
+   
+</body>
+</html>
